@@ -1,20 +1,19 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-
-fn is_safe(levels: &Vec<i32>) -> bool {
+fn is_safe(levels: &[i32]) -> bool {
     let decreasing = levels[0] > levels[1];
     for i in 0..(levels.len() - 1) {
         let diff = levels[i] - levels[i + 1];
         if decreasing {
-             if diff < 1 || diff > 3 {
+             if !(1..=3).contains(&diff) {
                 return false;
             }
-        } else if diff < -3 || diff > -1 {
+        } else if !(-3..=-1).contains(&diff) {
             return false;
         }
     }
-    return true;
+    true
 }
 
 fn part1(path: &str) -> i32 {
