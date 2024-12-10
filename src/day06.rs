@@ -6,7 +6,7 @@ enum Orientation {
     Up,
     Down,
     Left,
-    Right
+    Right,
 }
 
 impl Orientation {
@@ -15,7 +15,7 @@ impl Orientation {
             Self::Up => Self::Right,
             Self::Right => Self::Down,
             Self::Down => Self::Left,
-            Self::Left => Self::Up
+            Self::Left => Self::Up,
         }
     }
 }
@@ -24,20 +24,36 @@ impl Orientation {
 struct Position {
     x: i32,
     y: i32,
-    orientation: Orientation
+    orientation: Orientation,
 }
 
 impl Position {
     fn next_position(&self) -> Self {
         match self.orientation {
-            Orientation::Down  => Self { x: self.x,     y: self.y + 1, orientation: self.orientation.clone() },
-            Orientation::Up    => Self { x: self.x,     y: self.y - 1, orientation: self.orientation.clone() },
-            Orientation::Left  => Self { x: self.x - 1, y: self.y,     orientation: self.orientation.clone() },
-            Orientation::Right => Self { x: self.x + 1, y: self.y,     orientation: self.orientation.clone() }
+            Orientation::Down => Self {
+                x: self.x,
+                y: self.y + 1,
+                orientation: self.orientation.clone(),
+            },
+            Orientation::Up => Self {
+                x: self.x,
+                y: self.y - 1,
+                orientation: self.orientation.clone(),
+            },
+            Orientation::Left => Self {
+                x: self.x - 1,
+                y: self.y,
+                orientation: self.orientation.clone(),
+            },
+            Orientation::Right => Self {
+                x: self.x + 1,
+                y: self.y,
+                orientation: self.orientation.clone(),
+            },
         }
     }
 
-    fn is_in_grid(&self, width: usize , height: usize) -> bool {
+    fn is_in_grid(&self, width: usize, height: usize) -> bool {
         (0..width as i32).contains(&self.x) && (0..height as i32).contains(&self.y)
     }
 
@@ -49,15 +65,21 @@ impl Position {
 fn parse_map(path: &str) -> Vec<Vec<u8>> {
     let file = File::open(path).unwrap();
     let reader = BufReader::new(file);
-    reader.lines().map(|line| line.unwrap().as_bytes().to_vec()).collect()
+    reader
+        .lines()
+        .map(|line| line.unwrap().as_bytes().to_vec())
+        .collect()
 }
 
 fn get_guard_initial_position(map: &[Vec<u8>]) -> Option<Position> {
-
     for (y, line) in map.iter().enumerate() {
         for (x, cell) in line.iter().enumerate() {
             if *cell == b'^' {
-                return Some(Position { x: x as i32, y: y as i32, orientation: Orientation::Up });
+                return Some(Position {
+                    x: x as i32,
+                    y: y as i32,
+                    orientation: Orientation::Up,
+                });
             }
         }
     }
@@ -76,8 +98,9 @@ fn get_viewed_positions(map: &[Vec<u8>]) -> Vec<(i32, i32)> {
         }
 
         let mut next_position = position.next_position();
-        while next_position.is_in_grid(width, height) &&
-            map[next_position.y as usize][next_position.x as usize] == b'#' {
+        while next_position.is_in_grid(width, height)
+            && map[next_position.y as usize][next_position.x as usize] == b'#'
+        {
             position.orientation.rotate();
             next_position = position.next_position();
         }
@@ -107,8 +130,9 @@ fn is_looping(map: &[Vec<u8>], guard_position: &Position) -> bool {
         viewed_positions.push(position.clone());
 
         let mut next_position = position.next_position();
-        while next_position.is_in_grid(width, height) &&
-            map[next_position.y as usize][next_position.x as usize] == b'#' {
+        while next_position.is_in_grid(width, height)
+            && map[next_position.y as usize][next_position.x as usize] == b'#'
+        {
             position.orientation.rotate();
             next_position = position.next_position();
         }
@@ -125,7 +149,6 @@ fn part2(path: &str) -> i32 {
 
     let mut count = 0;
     for (x, y) in viewed_positions {
-
         if x == guard_position.x && y == guard_position.y {
             continue;
         }

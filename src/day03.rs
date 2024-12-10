@@ -30,7 +30,8 @@ fn part2(path: &str) -> i32 {
             enabled = false;
         } else if enabled {
             let caps = mul_re.captures(instruction).unwrap();
-            result += caps.get(1).unwrap().as_str().parse::<i32>().unwrap() * caps.get(2).unwrap().as_str().parse::<i32>().unwrap();
+            result += caps.get(1).unwrap().as_str().parse::<i32>().unwrap()
+                * caps.get(2).unwrap().as_str().parse::<i32>().unwrap();
         }
     }
     result

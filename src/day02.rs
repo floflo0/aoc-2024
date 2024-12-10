@@ -6,7 +6,7 @@ fn is_safe(levels: &[i32]) -> bool {
     for i in 0..(levels.len() - 1) {
         let diff = levels[i] - levels[i + 1];
         if decreasing {
-             if !(1..=3).contains(&diff) {
+            if !(1..=3).contains(&diff) {
                 return false;
             }
         } else if !(-3..=-1).contains(&diff) {

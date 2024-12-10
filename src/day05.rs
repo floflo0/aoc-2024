@@ -36,7 +36,7 @@ fn part1(path: &str) -> i32 {
                 }
             }
             if !ordered {
-                break
+                break;
             }
         }
         if !ordered {
@@ -67,7 +67,7 @@ fn part2(path: &str) -> i32 {
                 }
             }
             if !ordered {
-                break
+                break;
             }
         }
         if ordered {
