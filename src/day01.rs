@@ -48,8 +48,8 @@ fn part2(path: &str) -> i32 {
 }
 
 fn main() {
-    println!("Part 1: {}", part1("assets/day1/input.txt"));
-    println!("Part 2: {}", part2("assets/day1/input.txt"));
+    println!("Part 1: {}", part1("assets/day01/input.txt"));
+    println!("Part 2: {}", part2("assets/day01/input.txt"));
 }
 
 #[cfg(test)]
@@ -58,11 +58,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1("assets/day1/example.txt"), 11);
+        assert_eq!(part1("assets/day01/example.txt"), 11);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2("assets/day1/example.txt"), 31);
+        assert_eq!(part2("assets/day01/example.txt"), 31);
     }
 }

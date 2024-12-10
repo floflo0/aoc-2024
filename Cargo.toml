@@ -4,36 +4,40 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "day1"
-path = "src/day1.rs"
+name = "day01"
+path = "src/day01.rs"
 
 [[bin]]
-name = "day2"
-path = "src/day2.rs"
+name = "day02"
+path = "src/day02.rs"
 
 [[bin]]
-name = "day3"
-path = "src/day3.rs"
+name = "day03"
+path = "src/day03.rs"
 
 [[bin]]
-name = "day4"
-path = "src/day4.rs"
+name = "day04"
+path = "src/day04.rs"
 
 [[bin]]
-name = "day5"
-path = "src/day5.rs"
+name = "day05"
+path = "src/day05.rs"
 
 [[bin]]
-name = "day6"
-path = "src/day6.rs"
+name = "day06"
+path = "src/day06.rs"
 
 [[bin]]
-name = "day7"
-path = "src/day7.rs"
+name = "day07"
+path = "src/day07.rs"
 
 [[bin]]
-name = "day8"
-path = "src/day8.rs"
+name = "day08"
+path = "src/day08.rs"
+
+[[bin]]
+name = "day09"
+path = "src/day09.rs"
 
 [dependencies]
 regex = "1.11.1"
